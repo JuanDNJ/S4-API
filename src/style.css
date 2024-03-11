@@ -1,0 +1,62 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  display: grid;
+  grid-auto-flow: row;
+  background: #333;
+  overflow: hidden;
+}
+h1{
+  font-size: 2rem;
+}
+p{
+  font-size: 24px;
+  font-weight: 900;
+}
+#app {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background-color: white;
+  height: 100vh;
+}
+header{
+  /* background-color: red; */
+  padding: 30px;
+}
+.body{
+  display: flex;
+  place-content: center;
+  place-items: center;
+  /* background: gray; */
+}
+.content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 50%;
+  text-align: center;
+}
+footer{
+  /* background: silver; */
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+.nextJoke{
+  padding: 1rem;
+  background-color: silver;
+  border-radius: 4px;
+  border: 2px solid black;
+  font-weight: 900;
+}
+.nextJoke:active{
+  background: orange;
+  border: 2px solid green;
+  background-color: #444;
+  color: white;
+}
