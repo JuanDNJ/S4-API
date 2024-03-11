@@ -18,10 +18,10 @@ export const render = (elemntId: string, html: string) => {
 }
 
 export const initRender: string = /*html*/ `
-    <header>
-        <h2 class="text-3xl font-bold underline">Avui: Parcialment ennuvolat</h2>
+    <header class="flex items-center px-4 row-auto">
+        <h2 class="text-xl font-bold">Avui: Parcialment ennuvolat</h2>
     </header>
-    <section class="body"></section>
+    <section class="body px-4 row-span-12 flex flex-col items-center justify-center md:justify-start md:mt-40"></section>
   
 `;
 

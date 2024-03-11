@@ -9,11 +9,11 @@ render('#app', /*html*/initRender)
 getAcudit(URL).then(res => {
     const {id, joke, status} = res
     render('.body', /*html*/ `
-        <article class="content">
-            <h1>Preparat per riure?</h1>
-            <p class="text-joke" data-id="${id}">${status === 200 ?  joke : `Ups Error ${status}!`}</p>
-            <footer>
-                <button class="nextJoke" data-click="onClickButton" >Següent acudit</button>
+        <article class="content h-96 w-[100%] md:w-[50vw] bg-white shadow-2xl rounded-xl py-6 flex flex-col items-center justify-between">
+            <h1 class="flex-1 text-2xl font-bold">Preparat per riure?</h1>
+            <p class="text-joke px-4 text-xl  text-center text-pretty" data-id="${id}">${status === 200 ?  joke : `Ups Error ${status}!`}</p>
+            <footer class="flex-1 flex flex-col items-cente justify-end py-4">
+                <button class="nextJoke text-stone-100 bg-blue-500 active:text-stone-800 active:bg-stone-100 p-4 rounded-md  font-bold" data-click="onClickButton" >Següent acudit</button>
             </footer>
         </article>
     `)
