@@ -1,3 +1,5 @@
+import type { NewError } from "../types";
+
 export const suma = (a: number, b: number) => {
     return a + b
 }
@@ -11,9 +13,11 @@ export const getAcudit = async (url: string) => {
 export const domElement = (name: string) => {
     return document.querySelector<HTMLElement>(name)
 }
-
+export const domElements = (name: string) => {
+    return [...document.querySelectorAll<HTMLElement>(name)]
+}
 export const render = (elemntId: string, html: string) => {
-    const element = domElement(elemntId)
+    const element  = domElement(elemntId)
     element!.innerHTML = /*html*/ html;
 }
 
@@ -25,14 +29,27 @@ export const initRender: string = /*html*/ `
   
 `;
 
-export const onClickButton = (name: string, detail: string) => {
-    const button = domElement(name)
-    const newEvent = new CustomEvent("onClickButton", {
-        composed: true,
-        bubbles: true,
-        detail: detail
-    })
-    button?.addEventListener("click", () => {
-        globalThis.dispatchEvent(newEvent)
-    })
+export const onClickButton = (name: string, type?: String) => {
+    if(type === "all") {
+        const  buttons = domElements(name);
+        buttons.forEach(btn => {
+            btn?.addEventListener("click", (eve) => {
+                globalThis.dispatchEvent(newEvent("onClickButton", eve.target))
+            }) 
+        })
+    }else{
+        const button = domElement(name)
+        button?.addEventListener("click", (eve) => {
+            globalThis.dispatchEvent(newEvent("onClickButton", eve.target ))
+        })
+    }
+    
 }
+
+const newEvent = (nameEvent: string, data: any) =>  new CustomEvent(nameEvent, {
+    composed: true,
+    bubbles: true,
+    detail: data
+})
+
+export const myError = (message:string): NewError => new Error(`${message}`);
