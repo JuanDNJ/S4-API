@@ -19,7 +19,7 @@ export const render = (elemntId: string, html: string) => {
 
 export const initRender: string = /*html*/ `
     <header>
-        <h2>Avui: Parcialment ennuvolat</h2>
+        <h2 class="text-3xl font-bold underline">Avui: Parcialment ennuvolat</h2>
     </header>
     <section class="body"></section>
   
