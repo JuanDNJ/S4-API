@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,30 @@
     <title>Vite + TS</title>
   </head>
   <body>
-    <main id="app" class="grid grid-flow-row h-[100vh]"></main>
+    <main id="app" class="grid grid-flow-row h-[100vh]">
+      <header class="flex items-center px-4 row-auto">
+        <h2 class="text-xl font-bold">Avui: Parcialment ennuvolat</h2>
+      </header>
+      <section
+        class="body px-4 row-span-12 flex flex-col items-center justify-center md:justify-start md:mt-40"
+      >
+        <article
+          class="content h-96 w-[100%] md:w-[50vw] bg-white shadow-2xl rounded-xl py-6 flex flex-col items-center justify-between"
+        >
+          <h1 class="text-2xl font-bold">Preparat per riure?</h1>
+          <div
+            class="flex-1 content-acudit flex flex-col justify-between"
+          ></div>
+          <footer class="flex flex-col items-cente justify-end py-4">
+            <button
+              class="nextJoke text-stone-100 bg-blue-500 active:text-stone-800 active:bg-stone-100 p-4 rounded-md font-bold"
+            >
+              Següent acudit
+            </button>
+          </footer>
+        </article>
+      </section>
+    </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
