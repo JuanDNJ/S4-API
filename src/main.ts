@@ -25,6 +25,7 @@ getAcudit(URL).then(res => {
     if(event.detail === "nextJoke"){
         getAcudit(URL).then(res => {
             render('.text-joke', /*html*/res.joke)
+            console.log(res)
         }).catch(err => console.error(err))
     }
 })
