@@ -12,13 +12,17 @@ getAcudit(URL).then(res => {
         <article class="content">
             <h1>Preparat per riure?</h1>
             <p class="text-joke" data-id="${id}">${status === 200 ?  joke : `Ups Error ${status}!`}</p>
+            <footer>
+                <button class="nextJoke" data-click="onClickButton" >Següent acudit</button>
+            </footer>
         </article>
     `)
+    onClickButton('.nextJoke', "nextJoke");
     console.log(res)
 }).catch(err => console.error(err))
 
 
- onClickButton('.nextJoke', "nextJoke");
+
 
  globalThis?.addEventListener("onClickButton", (event: any) => {
     // console.log(event.detail)

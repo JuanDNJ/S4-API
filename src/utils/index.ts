@@ -4,7 +4,7 @@ export const suma = (a: number, b: number) => {
 
 export const getAcudit = async (url: string) => {
     const request = await fetch(url, { method: "GET", headers: { 'Accept': 'application/json' } });
-    const obJson = request.json();
+    const obJson = await request.json();
     return obJson;
 }
 
@@ -22,9 +22,7 @@ export const initRender: string = /*html*/ `
         <h2>Avui: Parcialment ennuvolat</h2>
     </header>
     <section class="body"></section>
-    <footer>
-        <button class="nextJoke" data-click="onClickButton" >Següent acudit</button>
-    </footer>
+  
 `;
 
 export const onClickButton = (name: string, detail: string) => {

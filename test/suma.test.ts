@@ -1,8 +1,8 @@
-import {suma} from "../src/utils"
+import {suma, getAcudit} from "../src/utils"
 // sum.test.js
 import { expect, describe, it } from 'vitest'
 
-describe("", ( ) => {
+describe("Funcion sumar", ( ) => {
   it('should be declared', () => {
     expect(typeof suma).toBe('function');
   });
@@ -13,3 +13,11 @@ describe("", ( ) => {
     expect(suma(1, 2)).toBeTypeOf('number')
   });
 }) 
+
+describe("Funcion getAcudit", ( ) => {
+  it('should be declared ', () => {
+    expect(typeof getAcudit).toBe('function');
+  });
+  
+}) 
+
