@@ -1,6 +1,6 @@
 import './style.css'
 
-import { getAcudit, addReportAcudit, getDateToISO, createReportAcudit} from './utils';
+import { getAcudit, addReportAcudit, getDateToISO, createReportAcudit, getApiCloud} from './utils';
 import type {Url, ReportAcudits, Acudit, Score} from './types';
 
 const URL: Url = 'https://icanhazdadjoke.com/';
@@ -13,7 +13,8 @@ const contentAcudit = document!.querySelector<HTMLElement>(".content-acudit")
 
 const render = async () => {
     const acudit: Acudit = await getAcudit(URL)
-
+    const cloud = await getApiCloud();
+    console.log(cloud)
     contentAcudit!.innerHTML = /*html*/  (`
         <p class="content-text flex-1 flex items-center text-xl text-center p-4 ">${acudit.joke}</p>
         <div class="scores flex justify-center gap-4 p-4 row-span-1">
