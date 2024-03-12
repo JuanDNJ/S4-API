@@ -8,3 +8,4 @@ export const AcuditComponent = (acudit: Acudit) =>  /*html*/  (`
         <button type="button" class="score py-2 px-4 text-4xl" data-score="3">🤣</button>
     </div>
 `);
+ export const createImage = (code:string) => `<img src="./cloud/${code}.svg" width="48" height="48" alt="clear_day"></h2>`

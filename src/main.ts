@@ -1,6 +1,6 @@
 import './style.css'
 
-import { AcuditComponent } from './utils/componets';
+import { AcuditComponent, createImage } from './utils/componets';
 import { getAcudit, addReportAcudit, getDateToISO, createReportAcudit, getApiCloud} from './utils';
 import type {Url, ReportAcudits, Acudit, Score} from './types';
 
@@ -12,11 +12,21 @@ const nextJoke = document.querySelector<HTMLButtonElement>(".nextJoke");
 
 const contentAcudit = document!.querySelector<HTMLElement>(".content-acudit")
 
+
+
+
+
+const renderCloudImage = async () => {
+    const cloud = await getApiCloud();
+    console.log(cloud.data.values.weatherCode)
+    const cloudImages = document.querySelector<HTMLElement>('.cloud-images');
+    cloudImages!.innerHTML = createImage(cloud.data.values.weatherCode)
+}
+renderCloudImage();
+
 const render = async () => {
     const acudit: Acudit = await getAcudit(URL)
-    const cloud = await getApiCloud();
-    console.log(cloud)
-
+    
     contentAcudit!.innerHTML = /*html*/  AcuditComponent(acudit)
     const listBtnScore = [...document.querySelectorAll<HTMLButtonElement>(".score")];
     listBtnScore.forEach((score) => {
