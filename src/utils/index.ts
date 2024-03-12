@@ -65,7 +65,7 @@ export const getApiCloud = async (position: Position) => {
         // Request API toMorrow.io
         const request = await fetch(URL, options);
         // On error 
-        if(!request.ok) throw new Error("Upps not found");
+        if(!request.ok) throw new Error(`${request.url} ${request.statusText} ${request.status}`);
         // Request API toMorrow.io
         const obJson = await request.json();
         console.log(obJson)
