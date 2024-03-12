@@ -1,5 +1,8 @@
-import type { ReportAcudits, Url, Score } from '../types';
+import type { ReportAcudits, Url, Score, Geolocation } from '../types';
 
+const API_KEY_TO_MORROOW_IO = import.meta.env.VITE_API_KEY_TO_MORROOW_IO;
+const URL_TO_MORROOW_IO = import.meta.env.VITE_URL_TO_MORROOW_IO;
+const URL_IPINFO_IO = import.meta.env.VITE_URL_IPINFO_IO;
 export const suma = (a: number, b: number) => {
     return a + b
 }
@@ -34,15 +37,36 @@ export const createReportAcudit = (joke: string, score: Score, date: string): Re
         joke, score, date
     };
 }
-export const getApiCloud = async () => {
+
+export const geolocationPosition = (callback: (posi:Geolocation) => void, error: any ) => {
+
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+            callback, 
+            error
+        )      
+    }else{
+        // El navegador no admite la geolocalización
+        console.error("La geolocalización no está disponible en este navegador.");
+    }
+}
+
+export const getApiCloud = async (location: {latitude: number | null, longitude: number | null}) => {
+   
     try {
-        const request = await fetch("https://api.tomorrow.io/v4/weather/realtime?location=41.402569483918874, 2.1943067686275497&apikey=5VmOowQ9mFGlbNE2tNaz4fN75aTbL4SC", {
+  // Obtener nombre de la ciudad mediante geocodificación inversa (utilizando la API de Google Maps)
+        const URL: Url = `${URL_TO_MORROOW_IO}/realtime?location=${String(location.latitude)}, ${String(location.longitude)}&apikey=${API_KEY_TO_MORROOW_IO}`
+        const options = {
             method: "GET",
             headers: {
                 "Accept": "application/json"
             }
-        })
+        }
+        // Request API toMorrow.io
+        const request = await fetch(URL, options);
+        // On error 
         if(!request.ok) throw new Error("Upps not found");
+        // Request API toMorrow.io
         const obJson = await request.json();
         console.log(obJson)
         return obJson;
@@ -50,3 +74,8 @@ export const getApiCloud = async () => {
         console.error(error.message);
     }
 }
+export const getCityIp = async () => {
+    const data = await fetch(URL_IPINFO_IO)
+    const response = await data.json()
+    return response
+  }
