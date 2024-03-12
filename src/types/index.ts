@@ -25,3 +25,4 @@ export type Geolocation = {
     },
     timestamp: number
 }
+export type Position = {latitude: number , longitude: number }

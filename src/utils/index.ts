@@ -1,4 +1,4 @@
-import type { ReportAcudits, Url, Score, Geolocation } from '../types';
+import type { ReportAcudits, Url, Score, Geolocation, Position } from '../types';
 
 const API_KEY_TO_MORROOW_IO = import.meta.env.VITE_API_KEY_TO_MORROOW_IO;
 const URL_TO_MORROOW_IO = import.meta.env.VITE_URL_TO_MORROOW_IO;
@@ -51,11 +51,11 @@ export const geolocationPosition = (callback: (posi:Geolocation) => void, error:
     }
 }
 
-export const getApiCloud = async (location: {latitude: number | null, longitude: number | null}) => {
+export const getApiCloud = async (position: Position) => {
    
     try {
   // Obtener nombre de la ciudad mediante geocodificación inversa (utilizando la API de Google Maps)
-        const URL: Url = `${URL_TO_MORROOW_IO}/realtime?location=${String(location.latitude)}, ${String(location.longitude)}&apikey=${API_KEY_TO_MORROOW_IO}`
+        const URL: Url = `${URL_TO_MORROOW_IO}/realtime?location=${String(position.latitude)}, ${String(position.longitude)}&apikey=${API_KEY_TO_MORROOW_IO}`
         const options = {
             method: "GET",
             headers: {
