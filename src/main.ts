@@ -15,9 +15,7 @@ const dataIpInfo = await getCityIp();
 
 geolocationPosition(
     (res: Geolocation) => {
-        console.log(res)
-     
-        
+        console.log(res)   
         const location = {latitude: res.coords.latitude, longitude: res.coords.longitude}
        
        const cloudImages = document.querySelector<HTMLElement>('.cloud-images');
