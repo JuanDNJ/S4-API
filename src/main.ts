@@ -1,5 +1,6 @@
 import './style.css'
 
+import { AcuditComponent } from './utils/componets';
 import { getAcudit, addReportAcudit, getDateToISO, createReportAcudit, getApiCloud} from './utils';
 import type {Url, ReportAcudits, Acudit, Score} from './types';
 
@@ -15,14 +16,8 @@ const render = async () => {
     const acudit: Acudit = await getAcudit(URL)
     const cloud = await getApiCloud();
     console.log(cloud)
-    contentAcudit!.innerHTML = /*html*/  (`
-        <p class="content-text flex-1 flex items-center text-xl text-center p-4 ">${acudit.joke}</p>
-        <div class="scores flex justify-center gap-4 p-4 row-span-1">
-            <button type="button" class="score py-2 px-4 text-4xl" data-score="1">☹️</button>
-            <button type="button" class="score py-2 px-4 text-4xl" data-score="2">🙂</button>
-            <button type="button" class="score py-2 px-4 text-4xl" data-score="3">🤣</button>
-        </div>
-    `);
+
+    contentAcudit!.innerHTML = /*html*/  AcuditComponent(acudit)
     const listBtnScore = [...document.querySelectorAll<HTMLButtonElement>(".score")];
     listBtnScore.forEach((score) => {
      
