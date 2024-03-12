@@ -1,6 +1,6 @@
 import './style.css'
 
-import { AcuditComponent, createImage } from './utils/componets';
+import { AcuditComponent, createImage } from './components';
 import { getAcudit, addReportAcudit, getDateToISO, createReportAcudit, getApiCloud} from './utils';
 import type {Url, ReportAcudits, Acudit, Score} from './types';
 

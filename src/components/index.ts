@@ -1,4 +1,4 @@
-import { Acudit } from "../../types";
+import { Acudit } from "../types";
 
 export const AcuditComponent = (acudit: Acudit) =>  /*html*/  (`
     <p class="content-text flex-1 flex items-center text-xl text-center p-4 ">${acudit.joke}</p>
