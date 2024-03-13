@@ -3,6 +3,13 @@ import type { ReportAcudits, Url, Score, Geolocation, Position } from '../types'
 const API_KEY_TO_MORROOW_IO = import.meta.env.VITE_API_KEY_TO_MORROOW_IO;
 const URL_TO_MORROOW_IO = import.meta.env.VITE_URL_TO_MORROOW_IO;
 const URL_IPINFO_IO = import.meta.env.VITE_URL_IPINFO_IO;
+
+export const $ = (nameElement: string): HTMLElement | null => {
+    return document.querySelector<HTMLElement>(nameElement)  
+}
+export const $all = (nameElement: string): HTMLElement[] | null => {
+    return [...document.querySelectorAll<HTMLElement>(nameElement)]
+}
 export const suma = (a: number, b: number) => {
     return a + b
 }

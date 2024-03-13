@@ -8,14 +8,16 @@
   </head>
   <body>
     <main id="app" class="grid grid-flow-row h-[100vh]">
-      <header class="flex flex-col items-start justify-center px-4 row-auto">
-        <h2 class="cloud-images text-xl font-bold">Avui: Parcialment ennuvolat</h2>
-        <div class="flex flex-col">
-          <strong class="city"></strong>
-          <strong class="region"></strong>
-          <span class="timezone"></span>
-       
-        </div>
+      <header class="flex items-center justify-start row-auto">
+        <section class="cloud px-4">
+          <div class="cloud-images text-sm font-bold">
+            Avui: Parcialment ennuvolat
+          </div>
+          <div class="flex flex-col">
+            <strong class="city text-sm"></strong>
+            <strong class="region text-sm"></strong>
+          </div>
+        </section>
       </header>
       <section
         class="body px-4 row-span-12 flex flex-col items-center justify-center md:justify-start md:mt-40"
