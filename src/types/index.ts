@@ -26,3 +26,5 @@ export type Geolocation = {
     timestamp: number
 }
 export type Position = {latitude: number | null , longitude: number | null}
+
+export type CallBack = (data: any) => void

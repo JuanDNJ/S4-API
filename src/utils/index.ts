@@ -1,4 +1,4 @@
-import type { ReportAcudits, Url, Score, Geolocation, Position } from '../types';
+import type { ReportAcudits, Url, Score, Geolocation, Position, CallBack } from '../types';
 
 const API_KEY_TO_MORROOW_IO = import.meta.env.VITE_API_KEY_TO_MORROOW_IO;
 const URL_TO_MORROOW_IO = import.meta.env.VITE_URL_TO_MORROOW_IO;
@@ -48,7 +48,7 @@ export const createReportAcudit = (joke: string, score: Score, date: string): Re
     };
 }
 
-export const geolocationPosition = (callback: (posi:Geolocation) => void, error: any ) => {
+export const geolocationPosition = (callback: CallBack, error: any ) => {
 
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(
