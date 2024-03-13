@@ -4,6 +4,9 @@ const API_KEY_TO_MORROOW_IO = import.meta.env.VITE_API_KEY_TO_MORROOW_IO;
 const URL_TO_MORROOW_IO = import.meta.env.VITE_URL_TO_MORROOW_IO;
 const URL_IPINFO_IO = import.meta.env.VITE_URL_IPINFO_IO;
 
+
+export const URL: Url = 'https://icanhazdadjoke.com/';
+
 export const $ = (nameElement: string): HTMLElement | null => {
     return document.querySelector<HTMLElement>(nameElement)  
 }

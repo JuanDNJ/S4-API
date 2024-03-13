@@ -1,10 +1,19 @@
 import './style.css'
 
-import { AcuditComponent, createImage } from './components';
-import {$,$all, getAcudit, addReportAcudit, getDateToISO, createReportAcudit, getCityIp, getApiCloud, geolocationPosition } from './utils';
 import type { Url, ReportAcudits, Acudit, Score, Geolocation, Position } from './types';
-
-const URL: Url = 'https://icanhazdadjoke.com/';
+import { AcuditComponent, createImage } from './components';
+import {
+    URL,
+    $,
+    $all,
+    getAcudit,
+    addReportAcudit,
+    getDateToISO,
+    createReportAcudit,
+    getCityIp,
+    getApiCloud,
+    geolocationPosition
+} from './utils';
 
 let reportAcudits: ReportAcudits[] = [];
 
@@ -12,8 +21,6 @@ const nextJoke = $(".nextJoke");
 const contentAcudit = $(".content-acudit")
 const region = $('.region');
 const city = $('.city');
-
-
 
 geolocationPosition(
     async (geolocation: Geolocation) => {
