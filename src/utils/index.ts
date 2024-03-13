@@ -1,14 +1,13 @@
-import type { ReportAcudits, Url, Score, Geolocation, Position, CallBack } from '../types';
+import type { DatIp, ReportAcudits, Url, Score, Geolocation, Position, CallBack } from '../types';
 
 const API_KEY_TO_MORROOW_IO = import.meta.env.VITE_API_KEY_TO_MORROOW_IO;
 const URL_TO_MORROOW_IO = import.meta.env.VITE_URL_TO_MORROOW_IO;
 const URL_IPINFO_IO = import.meta.env.VITE_URL_IPINFO_IO;
 
-
 export const URL: Url = 'https://icanhazdadjoke.com/';
 
 export const $ = (nameElement: string): HTMLElement | null => {
-    return document.querySelector<HTMLElement>(nameElement)  
+    return document.querySelector<HTMLElement>(nameElement)
 }
 export const $all = (nameElement: string): HTMLElement[] | null => {
     return [...document.querySelectorAll<HTMLElement>(nameElement)]
@@ -18,9 +17,14 @@ export const suma = (a: number, b: number) => {
 }
 
 export const getAcudit = async (url: Url) => {
-    const request = await fetch(url, { method: "GET", headers: { 'Accept': 'application/json' } });
-    const obJson = await request.json();
-    return obJson;
+    try {
+        const request = await fetch(url, { method: "GET", headers: { 'Accept': 'application/json' } });
+        if (!request.ok) throw new Error(`${request.status}`)
+        const obJson = await request.json();
+        return obJson;
+    } catch (error: any) {
+        console.error(error.message)
+    }
 }
 
 export const addReportAcudit = (acudits: ReportAcudits[], acudit: ReportAcudits): ReportAcudits[] => {
@@ -48,23 +52,23 @@ export const createReportAcudit = (joke: string, score: Score, date: string): Re
     };
 }
 
-export const geolocationPosition = (callback: CallBack, error: any ) => {
+export const geolocationPosition = (callback: CallBack, error: any) => {
 
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(
-            callback, 
+            callback,
             error
-        )      
-    }else{
+        )
+    } else {
         // El navegador no admite la geolocalización
         console.error("La geolocalización no está disponible en este navegador.");
     }
 }
 
 export const getApiCloud = async (position: Position) => {
-   
+
     try {
-  // Obtener nombre de la ciudad mediante geocodificación inversa (utilizando la API de Google Maps)
+        // Obtener nombre de la ciudad mediante geocodificación inversa (utilizando la API de Google Maps)
         const URL: Url = `${URL_TO_MORROOW_IO}/realtime?location=${String(position.latitude)}, ${String(position.longitude)}&apikey=${API_KEY_TO_MORROOW_IO}`
         const options = {
             method: "GET",
@@ -75,17 +79,30 @@ export const getApiCloud = async (position: Position) => {
         // Request API toMorrow.io
         const request = await fetch(URL, options);
         // On error 
-        if(!request.ok) throw new Error(`${request.url} ${request.statusText} ${request.status}`);
+        if (!request.ok) throw new Error(`${request.url} ${request.statusText} ${request.status}`);
         // Request API toMorrow.io
         const obJson = await request.json();
-        console.log(obJson)
+        // console.log(obJson)
         return obJson;
     } catch (error: any) {
         console.error(error.message);
     }
 }
 export const getCityIp = async () => {
-    const data = await fetch(URL_IPINFO_IO)
-    const response = await data.json()
-    return response
-  }
+    try {
+        const request = await fetch(URL_IPINFO_IO, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        })
+        const response = await request.json();
+        const dataIp = {
+            city: response.city,
+            region: response.region,  
+        }
+        return dataIp
+    } catch (error: any) {
+        console.error(error.message);
+    }
+}

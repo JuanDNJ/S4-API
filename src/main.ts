@@ -1,7 +1,6 @@
 import './style.css'
-
-import type { Url, ReportAcudits, Acudit, Score, Geolocation, Position } from './types';
-import { AcuditComponent, createImage } from './components';
+import type { ReportAcudits, Acudit, Score, Geolocation, Position } from './types';
+import { AcuditComponent,CloudComponent } from './components';
 import {
     URL,
     $,
@@ -19,28 +18,29 @@ let reportAcudits: ReportAcudits[] = [];
 
 const nextJoke = $(".nextJoke");
 const contentAcudit = $(".content-acudit")
-const region = $('.region');
-const city = $('.city');
+const cloudRender = $('.cloud');
 
-geolocationPosition(
-    async (geolocation: Geolocation) => {
-        console.log(geolocation)
-        const dataIpInfo = await getCityIp();
-        city!.innerHTML = `${dataIpInfo.city}`
-        region!.innerHTML = `${dataIpInfo.region}`
-        geolocation && renderCloud(geolocation);
-    },
-    (error: any) => console.log(error)
-)
-
-const renderCloud = async (location: Geolocation) => {
+const renderCloud = async () => {
     try {
-        if (!location) throw new Error("No location")
-        const position: Position = { latitude: location.coords.latitude, longitude: location.coords.longitude }
-        // const cloud = await getApiCloud(position);
-        cloud && console.log(cloud)
-        const cloudImages = $('.cloud-images');
-        cloudImages!.innerHTML = createImage(cloud && cloud.data.values.weatherCode, "48", "48")
+       
+        geolocationPosition(
+            async (geolocation: Geolocation) => {
+
+                const dataIpInfo = await getCityIp();
+                const position: Position = { latitude: geolocation.coords.latitude, longitude: geolocation.coords.longitude }
+                const cloud = await getApiCloud(position);
+                
+                const data = {
+                    img: cloud.data.values.weatherCode,
+                    city: dataIpInfo!.city,
+                    region: dataIpInfo!.region,
+                    temperature: cloud.data.values.temperature
+                }
+                cloudRender!.innerHTML = CloudComponent(data);
+                // cloudRender!.innerHTML = CloudComponent();
+            },
+            (error: any) => console.log(error)
+        )
     } catch (error) {
         console.error(error)
     }
@@ -69,6 +69,7 @@ const render = async () => {
 }
 
 render();
+renderCloud();
 
 nextJoke?.addEventListener("click", () => {
     render();

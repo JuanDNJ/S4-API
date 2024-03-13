@@ -28,3 +28,8 @@ export type Geolocation = {
 export type Position = {latitude: number | null , longitude: number | null}
 
 export type CallBack = (data: any) => void
+
+export type DatIp = {
+    city: string ;
+    region: string ;
+}
