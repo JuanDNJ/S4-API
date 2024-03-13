@@ -1,4 +1,4 @@
-import type { DatIp, ReportAcudits, Url, Score, Geolocation, Position, CallBack } from '../types';
+import type { ReportAcudits, Url, Score, Position, CallBack } from '../types';
 
 const API_KEY_TO_MORROOW_IO = import.meta.env.VITE_API_KEY_TO_MORROOW_IO;
 const URL_TO_MORROOW_IO = import.meta.env.VITE_URL_TO_MORROOW_IO;

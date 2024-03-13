@@ -14,7 +14,7 @@ export const CloudComponent = (dataCloud: any) => {
     if(dataCloud) {
         return (`
        
-        <div class="cloud-image flex items-center justify-between gap-2 text-sm font-bold">
+            <div class="cloud-image flex items-center justify-between gap-2 text-sm font-bold">
                 <img src="./cloud/${dataCloud.img}.svg" width="32" height="32" alt="Image Cloud" />
                 <strong>${dataCloud.temperature}</strong>
             </div>
@@ -25,18 +25,14 @@ export const CloudComponent = (dataCloud: any) => {
     `);
     }else{
         return (`
-       
-        <div class="cloud-image flex items-center justify-between gap-2 text-sm font-bold">
-            <img src="./cloud/1000.svg" width="32" height="32" alt="Image Cloud" />
-            <strong>15º</strong>
-        </div>
-        <div class="flex items-center">
-            <strong class="city text-sm"><span class="text-sm">en</span> Badalona Catalonia</strong>
-        </div>
-
-        
-        
-`);
+            <div class="cloud-image flex items-center justify-between gap-2 text-sm font-bold">
+                <img src="./cloud/1000.svg" width="32" height="32" alt="Image Cloud" />
+                <strong>15º</strong>
+            </div>
+            <div class="flex items-center">
+                <strong class="city text-sm"><span class="text-sm">en</span> Badalona Catalonia</strong>
+            </div>
+        `);
     }
     
 };
