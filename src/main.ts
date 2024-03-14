@@ -1,17 +1,16 @@
 import './style.css'
-import type { ReportAcudits, Acudit, Score, Geolocation, Position } from './types';
+import type { ReportAcudits, Score, Geolocation, Position } from './types';
 import { AcuditComponent,CloudComponent } from './components';
 import {
-    URL,
     $,
     $all,
-    getAcudit,
     addReportAcudit,
     getDateToISO,
     createReportAcudit,
     getCityIp,
     getApiCloud,
-    geolocationPosition
+    geolocationPosition,
+    combineJoke
 } from './utils';
 
 let reportAcudits: ReportAcudits[] = [];
@@ -22,7 +21,6 @@ const cloudRender = $('.cloud');
 
 const renderCloud = async () => {
     try {
-       
         geolocationPosition(
             async (geolocation: Geolocation) => {
 
@@ -37,7 +35,6 @@ const renderCloud = async () => {
                     temperature: cloud.data.values.temperature
                 }
                 cloudRender!.innerHTML = CloudComponent(data);
-                // cloudRender!.innerHTML = CloudComponent();
             },
             (error: any) => console.log(error)
         )
@@ -48,17 +45,17 @@ const renderCloud = async () => {
 
 
 const render = async () => {
-    const acudit: Acudit = await getAcudit(URL)
-    contentAcudit!.innerHTML = /*html*/  AcuditComponent(acudit)
+    const acudit = await combineJoke();
+    console.log(acudit)
+    contentAcudit!.innerHTML = /*html*/  AcuditComponent(acudit.randomJoke)
     const listBtnScore = $all(".score");
     listBtnScore!.forEach((score) => {
 
         score.addEventListener("click", (event: any) => {
-            // console.log(event.target.dataset.score)
-
+        
             const score: Score = event.target.dataset.score;
             const date: string = getDateToISO();
-            const joke: string = acudit.joke;
+            const joke: string = acudit.randomJoke;
 
             const newReportAcudit = createReportAcudit(joke, score, date)
 

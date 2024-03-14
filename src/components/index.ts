@@ -1,8 +1,7 @@
-import { Acudit } from "../types";
 
-export const AcuditComponent = (acudit: Acudit) =>  /*html*/(`
+export const AcuditComponent = (acudit: string) =>  /*html*/(`
     <p class="content-text size-full flex items-center text-2xl text-center text-white px-6">
-        <span>${acudit.joke}</span>
+        <span>${acudit}</span>
     </p>
     <div class="scores flex md:flex-1 justify-center  gap-4 p-4">
         <button type="button" class="score py-2 px-4 text-4xl" data-score="1">☹️</button>

@@ -8,11 +8,6 @@ export type ReportAcudits = {
     date: string;
 }
 
-export type Acudit = {
-    joke: string;
-    id: string;
-    status: number;
-}
 export type Geolocation = {
     coords: {
         accuracy: number | null
