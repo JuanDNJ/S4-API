@@ -1,9 +1,9 @@
 import type { ReportAcudits, Url, Score, Position, CallBack } from '../types';
 
-const API_KEY_TO_MORROOW_IO = import.meta.env.VITE_API_KEY_TO_MORROOW_IO;
-const URL_TO_MORROOW_IO = import.meta.env.VITE_URL_TO_MORROOW_IO;
-const URL_IPINFO_IO = import.meta.env.VITE_URL_IPINFO_IO;
-const URL_CHUCK_NORRIS = import.meta.env.VITE_URL_CHUCK_NORRIS;
+const API_KEY_TO_MORROOW_IO = import.meta.env.VITE_API_KEY_TO_MORROOW_IO || "5VmOowQ9mFGlbNE2tNaz4fN75aTbL4SC";
+const URL_TO_MORROOW_IO = import.meta.env.VITE_URL_TO_MORROOW_IO || "https://api.tomorrow.io/v4/weather";
+const URL_IPINFO_IO = import.meta.env.VITE_URL_IPINFO_IO || "https://ipinfo.io/json";
+const URL_CHUCK_NORRIS = import.meta.env.VITE_URL_CHUCK_NORRIS || "https://api.chucknorris.io/jokes/random";
 
 export const URL_ICAN_HAZ_DAD_JOKE = import.meta.env.VITE_URL_ICAN_HAZ_DAD_JOKE;
 
