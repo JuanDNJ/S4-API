@@ -5,7 +5,7 @@ const URL_TO_MORROOW_IO = import.meta.env.VITE_URL_TO_MORROOW_IO || "https://api
 const URL_IPINFO_IO = import.meta.env.VITE_URL_IPINFO_IO || "https://ipinfo.io/json";
 const URL_CHUCK_NORRIS = import.meta.env.VITE_URL_CHUCK_NORRIS || "https://api.chucknorris.io/jokes/random";
 
-export const URL_ICAN_HAZ_DAD_JOKE = import.meta.env.VITE_URL_ICAN_HAZ_DAD_JOKE;
+export const URL_ICAN_HAZ_DAD_JOKE = import.meta.env.VITE_URL_ICAN_HAZ_DAD_JOKE || "https://icanhazdadjoke.com";
 
 export const $ = (nameElement: string): HTMLElement | null => {
     return document.querySelector<HTMLElement>(nameElement)
