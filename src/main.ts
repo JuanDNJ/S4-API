@@ -1,6 +1,7 @@
 import './style.css'
 import type { ReportAcudits, Score, Geolocation, Position } from './types';
-import { AcuditComponent,CloudComponent } from './components';
+import { AcuditComponent, CloudComponent } from './components';
+import Fondo from './assets/fondo-chistes.png'
 import {
     $,
     $all,
@@ -18,7 +19,8 @@ let reportAcudits: ReportAcudits[] = [];
 const nextJoke = $(".nextJoke");
 const contentAcudit = $(".content-acudit")
 const cloudRender = $('.cloud');
-
+const sectionBody = $(".body") || null;
+sectionBody!.style.backgroundImage = `url(${Fondo})`;
 const renderCloud = async () => {
     try {
         geolocationPosition(
@@ -27,7 +29,7 @@ const renderCloud = async () => {
                 const dataIpInfo = await getCityIp();
                 const position: Position = { latitude: geolocation.coords.latitude, longitude: geolocation.coords.longitude }
                 const cloud = await getApiCloud(position);
-                
+
                 const data = {
                     img: cloud.data.values.weatherCode,
                     city: dataIpInfo!.city,
@@ -52,7 +54,7 @@ const render = async () => {
     listBtnScore!.forEach((score) => {
 
         score.addEventListener("click", (event: any) => {
-        
+
             const score: Score = event.target.dataset.score;
             const date: string = getDateToISO();
             const joke: string = acudit.randomJoke;
